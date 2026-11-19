@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>find out, discover, invent чи detect? | znohub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg-top:#FFF8DB;
+  --bg:#FFFFFF;
+  --surface:#FFFFFF;
+  --ink:#000000;
+  --muted:#5C5340;
+  --gold:#F3A60A;
+  --gold-text:#B97A00;
+  --gold-2:#FBCF0E;
+  --pill:#FFF2B8;
+  --pill-2:#FFF5CA;
+  --line:#F7D65A;
+  --line-soft:#FBE7A1;
+  --blue:#0C00FF;
+  --ok:#2E8B3E;
+  --ok-bg:#DDF3DC;
+  --bad:#D03A2C;
+  --bad-bg:#FCE1DD;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg-top:#2A220C;
+    --bg:#16130B;
+    --surface:#211C10;
+    --ink:#F6F2E6;
+    --muted:#C9BD9A;
+    --gold:#F6B52A;
+    --gold-text:#F6C04A;
+    --gold-2:#FBCF0E;
+    --pill:#3A3014;
+    --pill-2:#2E2711;
+    --line:#6B5719;
+    --line-soft:#3E3416;
+    --blue:#8C85FF;
+    --ok:#6FD27E;
+    --ok-bg:#1C3520;
+    --bad:#FF8A7E;
+    --bad-bg:#3F1D19;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg-top:#2A220C;
+  --bg:#16130B;
+  --surface:#211C10;
+  --ink:#F6F2E6;
+  --muted:#C9BD9A;
+  --gold:#F6B52A;
+  --gold-text:#F6C04A;
+  --gold-2:#FBCF0E;
+  --pill:#3A3014;
+  --pill-2:#2E2711;
+  --line:#6B5719;
+  --line-soft:#3E3416;
+  --blue:#8C85FF;
+  --ok:#6FD27E;
+  --ok-bg:#1C3520;
+  --bad:#FF8A7E;
+  --bad-bg:#3F1D19;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth;background:var(--bg)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;color:var(--ink);
+  background:linear-gradient(180deg,var(--bg-top) 0,var(--bg) 520px) no-repeat,var(--bg);
+  font-family:"Inter","Google Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:17px;line-height:1.55;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg-top)}
+.wrap{max-width:820px;margin:0 auto;padding:12px 16px 56px}
+
+/* top bar like the slides */
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:5;
+  display:flex;align-items:center;gap:14px;
+  background:var(--pill);border-radius:14px;padding:10px 16px;
+}
+.dots{display:flex;gap:6px;flex:none}
+.dots i{width:10px;height:10px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:#EE5A52}
+.dots i:nth-child(2){background:#E3BC6A}
+.dots i:nth-child(3){background:#53C14B}
+.logo{height:26px;width:auto;color:var(--ink);display:block}
+.topbar .subject{margin-left:auto;font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap}
+@media (max-width:360px){.topbar .subject{display:none}.topbar{gap:10px;padding:10px 12px}}
+
+/* gold banner like slide titles */
+.banner{
+  position:relative;overflow:hidden;
+  margin-top:12px;border-radius:12px;
+  background:linear-gradient(180deg,var(--gold) 0%,var(--gold-2) 100%);
+  color:#000;text-align:center;
+  padding:14px 72px;
+}
+.banner::before,.banner::after{
+  content:"";position:absolute;top:0;bottom:0;width:150px;
+  background-size:auto 100%;background-repeat:no-repeat;opacity:.9;pointer-events:none;
+}
+.banner::before{left:0;background-image:url("data:image/webp;base64,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");background-position:left center}
+.banner::after{right:0;background-image:url("data:image/webp;base64,UklGRugGAABXRUJQVlA4WAoAAAAQAAAALQEAXwAAQUxQSMIFAAABoG5rm5rI+iqKBgnBW5CQMO4+U0j6/q/phJa36iu+8zciJEiSJKhNbZcYQDriONme21v8AHJ/+MNsxDKyNrQLq3LHMooxvTgUTc8HhqHPn64ACtjSQXYhWjOlnCp6eSzPRy0T5Pe5kijkiN9wZRnQy2N8OGqZIK8/ZkrfQ3ZhuWfK3ctRNPx30jJBqstVDgNkF6Y8ZV6sYiCdH2ctE0Qdh0IZV/ImkMa3SgsFNZkySmNkFwZFwfM6eQIkeFdpoaAGV7IGsgvdHU92xQCIel1poaAo5UoL+B5qbbhecYS8G5vzQcsEBalbDV/O1PAhR/y2jkyQP3Co4QtvubLwSb18OlE3fDJBqp851PAtHGr4BnXDZ49rS8KVgY9kVjIFaviSnydtHekavhRq+EZc5/bbFpD4a6WFglojrkTILgwLpuQdINGHsxYKiq+/4Suwhu9Vpe1wlUm5iiYBb247L5heMUWS16/LgrAzbTHbTNtMgQ2fRWRs+LpIwxfdM2U/94DMjkctE+T1HGr4fL6ZthCcabOG4A2fmjNNHZWrCEjv90lbR7yZttChmbYNNNNWN3xCQW2umTas4UvLgie7NtLwfa60UFBjxDWghi9ha/j6pF6MXzd8QkExF1kT+gOSF0ybT5FdKCupoNClhq+x5soEaYZuTwdtAVn74y50xFdMM237BdIfL05HbYywDd84gY74kmticukBSf+etEyQSsbulGq+53ldrEz+nDWIAKPLVbahTLjOviYEpPXtrM2Qt+HLIkLGkOvcvktgwycU1ORJNlSEjB5Pw1dsfCTBm0oLBcWjjOsCpysNX16OCQkVD1JBYcqSoQd9DzU3Rc5RRMgeKFrVDR+MAA2fMzcU3pccGxyRgo74vG74ZIK8PkOyPnzEbxlSrBQRlLE+alNEnWkL4CM+2zOkRWCSPydtn+tZisd1F2z4WO6C6X4/awiRG74swWG4xFku8D0IP1ZaKKiZ2X/CYPQLy0Wx9vAE7ystFBTb36jRDLrtS5x5YPJX067SQkGR5YYv9c3+gGwtlzGZjM35KBQUDCz/oOEfkHu7aZDJDS0OUkGhOyiKtq5AHq3OWiZUkjlzh9TUoS/Jz6NMX1Qvc+ZbSNletRga2a0nJR8hu1nf0NL2hkzsXya8JUL1M7auGPogUmn7qoCRl2UZzyH3GX3WMsC3vdY632ekYAeXSykS4TGsjwpMtXunjdfjy/qop4huNjBoFu/su1ZmSoQ/cGjqI7y3bl7iUx+TI88spEwf+049uH6k7cRoPftP/TySO267Y76fwp5qJSJIGcyGnjt1sQlMfAFBagZi7J3luXayKxMTJcJPWWyD72zE49REiQh46h5hI1qzXJW7UZiLixIRpDx6oCuW+i7AXJ6xtT1iC/4aNjYs3vqwMhG6I7nl/ekgExHTJ5ZRtwWHNx7m5uGA8j9ii8X9QoFWWiailGntJroCikto5JWWap2+Q7Z4nIMWD/qAI68dl5wSqNlnQMS1jevMmcMjTRBXl35iBlWPNeJ/wc6OpzZQJBrXb7019D8MEIlG5pBdps9gEa4p8tc9poXmmN7rWpFo8dQteDEdR40afKg1R3oHPI5AP9ZaQHiHpSsfs6Xasz6IRJvHpvOGn2tFonP1DrBno4t2kLFuoBYuWf+EJSR01HCoLvqY4UWR6PAYE0bK86yJ1hC7Hjlk/KX+CXvIt7XYHYsC9VutRYR2smexZ6BNZDMbwfLUCWb7e61EqITHyCF3CSnEzu9auwismu05zNtEmCd9sIxkpiG4C3OH7P2plQjV4zFwSuzZ5G+tda7Ea6+3TbC+aJvTF7Ec+qgcy8Jgkz/2Pfx72Evr3iH/cli9866A7tgdacwlNKKfZ/vq6u012MgcMilZbBHG20oovdQh/XXBsLVNA134K1VNnYzDgECyMmcQPWPzvp/sU725Cn2O24FPIMG6YKnB2/mZ4QVfK6ohVlA4IAABAABQEgCdASouAWAAPlEkj0UjoiEUz0wAOAUEtLdwYGf8AYAB+gH8A0AD+AQIB+AF7pob+kv8A/AD9APyd7/BQwn29GuW5AayEDIQE/HN+O+SFd53FsqORzW8+QMhASroAVyAdKdjl8r/eHpI333RXE/HqoS5xtNBdlbJqCdqoyE+1RdTJ7SZ2qLqIocT8e1iXONgzcfAmME3PpR/AAD9910WYoiqsKQAt2tNieilCPuQ/kA/3slvdMl7ZsXL6KVNeiR2rbH//+oL4D6MHeiT/VmYnokdq1olSOdTru/8h/P9GNCbbXf+iIdAJJX0SO1abfoptXoxoTba7/0RDoBIAAAA");background-position:right center}
+.banner h1,.banner h2{position:relative;z-index:1;margin:0;font-weight:500;line-height:1.25}
+.banner h1{font-size:clamp(22px,4.6vw,34px)}
+.banner h2{font-size:clamp(19px,3.6vw,24px)}
+@media (max-width:520px){.banner{padding:12px 24px}.banner::before,.banner::after{width:70px;opacity:.6}}
+
+.lead{text-align:center;max-width:56ch;margin:18px auto 0;color:var(--muted)}
+section{margin-top:44px}
+.sub{text-align:center;color:var(--muted);margin:14px auto 0;max-width:60ch}
+
+/* cards */
+.card{
+  background:var(--surface);border:1.5px solid var(--line);border-radius:24px;
+  margin-top:20px;overflow:hidden;
+}
+.row{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;padding:18px 22px}
+.row + .row{border-top:1px solid var(--line-soft)}
+.icon{width:52px;height:52px;display:block}
+@media (max-width:520px){.row{grid-template-columns:36px 1fr;gap:12px;padding:16px 16px}.row .icon{width:36px;height:36px}.qhead{grid-template-columns:40px 1fr;padding:14px 16px}.qhead .icon{width:40px;height:40px}.opts{padding:14px 16px}}
+.hl{color:var(--gold-text);font-weight:inherit}
+
+/* quick key */
+.key .row{grid-template-columns:1fr auto;align-items:center;padding:14px 22px}
+.key-q{font-size:17px}
+.key-a{font-size:clamp(20px,4.4vw,26px);font-weight:600;color:var(--gold-text);white-space:nowrap}
+
+nav.jump{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:22px 0 0}
+nav.jump a{color:var(--ink);text-decoration:none;background:var(--pill);padding:9px 16px;border-radius:999px;font-weight:500;font-size:15px}
+nav.jump a:hover{background:var(--gold-2);color:#000}
+
+/* cheat sheet words */
+.word h3{margin:0;font-size:26px;font-weight:500;color:var(--gold-text);line-height:1.2}
+.word .def{margin:6px 0 8px}
+.word .ex{margin:2px 0;font-style:italic}
+.word .forms{margin:8px 0 0;color:var(--muted);font-size:15px}
+.notes{display:grid;gap:12px;margin-top:16px}
+.note{background:var(--pill-2);border-radius:18px;padding:14px 18px;font-size:15px;margin:0}
+
+/* passage */
+.passage{padding:22px 24px;font-size:18px;line-height:1.9}
+.passage h3{margin:0 0 6px;font-size:18px;font-weight:600}
+.gap{display:inline-block;min-width:92px;padding:0 8px;border-bottom:2px solid var(--gold);text-align:center;font-weight:600;line-height:1.5}
+.gap.ok{background:var(--ok-bg);border-bottom-color:var(--ok)}
+.gap.bad{background:var(--bad-bg);border-bottom-color:var(--bad)}
+
+/* questions */
+.qhead{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line-soft)}
+.qhead .icon{width:48px;height:48px}
+.qtext{font-size:18px;margin:0}
+.blank{display:inline-block;min-width:64px;border-bottom:2px solid var(--gold);text-align:center}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:16px 20px}
+@media (max-width:420px){.opts{grid-template-columns:1fr}.qhead{grid-template-columns:32px 1fr;gap:10px;align-items:start}.qhead .icon{width:32px;height:32px}}
+.opt{
+  font:inherit;font-size:16px;text-align:left;cursor:pointer;color:var(--ink);
+  display:flex;align-items:center;gap:14px;
+  background:var(--pill);border:2px solid transparent;border-radius:999px;
+  padding:5px 18px 5px 5px;min-height:48px;
+}
+.opt .l{
+  flex:none;width:36px;height:36px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;font-weight:600;
+  background:linear-gradient(180deg,var(--gold) 0%,var(--gold-2) 100%);
+}
+.opt:hover:not([disabled]){border-color:var(--gold)}
+.opt.sel{border-color:var(--ink)}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok)}
+.opt.ok .l{background:var(--ok)}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad)}
+.opt.bad .l{background:var(--bad)}
+.opt[disabled]{cursor:default}
+.opt:focus-visible,.btn:focus-visible,nav.jump a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.explain{display:none;margin:0 20px 18px;font-size:15px;padding:12px 16px;border-radius:16px;background:var(--ok-bg)}
+.explain.show{display:block}
+.explain.wrong{background:var(--bad-bg)}
+.gq-label{padding:14px 20px 0;font-weight:600}
+.gq + .gq{border-top:1px solid var(--line-soft)}
+
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center;justify-content:center}
+.btn{font:inherit;font-weight:600;cursor:pointer;border-radius:999px;padding:11px 22px;min-height:46px;border:2px solid transparent}
+.btn.primary{background:linear-gradient(180deg,var(--gold) 0%,var(--gold-2) 100%);color:#000}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:default}
+.score{font-weight:600}
+
+footer{margin-top:48px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="topbar">
+  <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+  <svg class="logo" viewBox="90 145 910 210" role="img" aria-label="znohub" xmlns="http://www.w3.org/2000/svg" fill="none">
+<path d="M209.489 342.271H98L154.306 242.18H98V208.021H209.489L153.183 308.112H209.489V342.271Z" fill="currentColor"/>
+<path d="M262.55 342.271H228.466V207.77H236.706L247.942 220.831C253.436 215.807 259.636 211.956 266.545 209.277C273.536 206.514 280.819 205.133 288.393 205.133C296.55 205.133 304.249 206.723 311.49 209.905C318.731 213.002 325.057 217.314 330.467 222.84C335.877 228.282 340.122 234.687 343.201 242.054C346.364 249.338 347.946 257.124 347.946 265.413V342.271H313.862V265.413C313.862 261.897 313.196 258.59 311.865 255.492C310.533 252.31 308.702 249.548 306.371 247.203C304.041 244.859 301.336 243.017 298.256 241.678C295.177 240.338 291.889 239.668 288.393 239.668C284.814 239.668 281.443 240.338 278.28 241.678C275.118 243.017 272.371 244.859 270.04 247.203C267.71 249.548 265.879 252.31 264.547 255.492C263.215 258.59 262.55 261.897 262.55 265.413V342.271Z" fill="currentColor"/>
+<path d="M536.858 341.989H502.793V155H536.858V214.082C540.934 211.001 545.135 208.836 549.461 207.587C553.787 206.254 558.196 205.588 562.688 205.588C570.923 205.588 578.66 207.17 585.897 210.335C593.134 213.416 599.415 217.704 604.739 223.2C610.146 228.613 614.389 234.983 617.467 242.311C620.628 249.556 622.208 257.3 622.208 265.544V341.989H587.894V265.544H588.143C588.143 262.047 587.478 258.758 586.147 255.677C584.816 252.512 582.986 249.764 580.656 247.433C578.327 245.101 575.624 243.269 572.546 241.937C569.468 240.604 566.182 239.938 562.688 239.938C559.111 239.938 555.742 240.604 552.581 241.937C549.419 243.269 546.674 245.101 544.345 247.433C542.016 249.764 540.186 252.512 538.855 255.677C537.524 258.758 536.858 262.047 536.858 265.544V341.989Z" fill="currentColor"/>
+<path d="M743.745 326.375C741 328.873 738.047 331.246 734.886 333.495C731.808 335.66 728.563 337.575 725.153 339.241C721.742 340.823 718.207 342.072 714.546 342.988C710.969 343.987 707.309 344.487 703.566 344.487C695.33 344.487 687.594 343.029 680.356 340.115C673.119 337.2 666.755 333.078 661.265 327.749C655.858 322.336 651.574 315.799 648.412 308.138C645.335 300.394 643.796 291.734 643.796 282.157V208.211H677.736V282.157C677.736 286.654 678.401 290.693 679.732 294.273C681.147 297.771 683.018 300.727 685.348 303.142C687.677 305.557 690.38 307.389 693.458 308.638C696.62 309.887 699.989 310.512 703.566 310.512C707.06 310.512 710.345 309.72 713.423 308.138C716.584 306.473 719.33 304.308 721.659 301.643C723.988 298.978 725.818 295.98 727.149 292.65C728.48 289.235 729.146 285.738 729.146 282.157V208.211H763.211V341.989H754.975L743.745 326.375Z" fill="currentColor"/>
+<path d="M923.055 273.913C923.055 284.406 921.267 293.982 917.69 302.642C914.113 311.303 909.246 318.756 903.091 325.001C896.935 331.163 889.697 335.951 881.379 339.365C873.143 342.78 864.284 344.487 854.8 344.487C845.4 344.487 836.541 342.738 828.222 339.241C819.986 335.743 812.749 330.872 806.51 324.626C800.354 318.381 795.488 310.97 791.911 302.392C788.334 293.732 786.545 284.239 786.545 273.913V155H820.735V217.454C822.565 215.123 824.77 213.041 827.348 211.209C830.01 209.377 832.839 207.878 835.834 206.712C838.911 205.546 842.073 204.672 845.317 204.089C848.561 203.423 851.722 203.09 854.8 203.09C864.284 203.09 873.143 204.88 881.379 208.461C889.697 211.958 896.935 216.872 903.091 223.2C909.246 229.529 914.113 237.023 917.69 245.684C921.267 254.261 923.055 263.671 923.055 273.913ZM888.741 273.913C888.741 268.75 887.826 263.962 885.996 259.549C884.249 255.052 881.836 251.18 878.758 247.932C875.68 244.685 872.062 242.145 867.902 240.313C863.826 238.481 859.459 237.565 854.8 237.565C850.142 237.565 845.733 238.606 841.573 240.687C837.497 242.686 833.92 245.392 830.842 248.807C827.764 252.137 825.352 256.01 823.605 260.423C821.858 264.753 820.985 269.25 820.985 273.913C820.985 279.076 821.858 283.864 823.605 288.278C825.352 292.691 827.764 296.522 830.842 299.769C833.92 303.017 837.497 305.598 841.573 307.514C845.733 309.346 850.142 310.262 854.8 310.262C859.459 310.262 863.826 309.346 867.902 307.514C872.062 305.598 875.68 303.017 878.758 299.769C881.836 296.522 884.249 292.691 885.996 288.278C887.826 283.864 888.741 279.076 888.741 273.913Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M425.732 338.583C461.769 338.583 490.983 309.368 490.983 273.332C490.983 237.296 461.769 208.081 425.732 208.081C389.694 208.081 360.48 237.296 360.48 273.332C360.48 309.368 389.694 338.583 425.732 338.583ZM423.259 237.994C419.411 234.658 413.588 235.074 410.253 238.922C406.918 242.77 407.334 248.594 411.182 251.93L434.717 272.326L410.864 295.022C407.176 298.532 407.031 304.37 410.541 308.058C414.051 311.748 419.888 311.892 423.577 308.382L453.652 279.762C458.201 275.435 458.031 268.129 453.286 264.015L423.259 237.994Z" fill="#0C00FF"/>
+<path d="M981.997 318.678C981.997 331.708 971.599 342.271 958.772 342.271C945.945 342.271 935.547 331.708 935.547 318.678C935.547 305.647 945.945 295.084 958.772 295.084C971.599 295.084 981.997 305.647 981.997 318.678Z" fill="#0C00FF"/>
+</svg>
+
+  <span class="subject">Англійська мова</span>
+</div>
+
+<header>
+  <div class="banner"><h1>find out, discover, invent чи detect?</h1></div>
+  <p class="lead">Чотири дієслова, які на НМТ часто стоять поруч як варіанти відповіді. Правильне лише одне, і обрати його можна за кілька секунд.</p>
+
+  <div class="card key" aria-label="Як швидко обрати слово">
+    <div class="row"><span class="key-q">Цього раніше не існувало?</span><span class="key-a">invent</span></div>
+    <div class="row"><span class="key-q">Існувало, але про це ніхто не знав?</span><span class="key-a">discover</span></div>
+    <div class="row"><span class="key-q">Отримав інформацію?</span><span class="key-a">find out</span></div>
+    <div class="row"><span class="key-q">Помітив щось ледь помітне?</span><span class="key-a">detect</span></div>
+  </div>
+
+  <nav class="jump" aria-label="Розділи">
+    <a href="#shpora">Шпаргалка</a>
+    <a href="#tekst">Тест у форматі НМТ</a>
+    <a href="#vikoryna">Швидкий тест</a>
+  </nav>
+</header>
+
+<section id="shpora">
+  <div class="banner"><h2>Шпаргалка</h2></div>
+
+  <div class="card">
+    <div class="row word">
+      <img class="icon" src="data:image/webp;base64,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" alt="">
+      <div>
+        <h3>invent</h3>
+        <p class="def">Створити щось нове, чого раніше не існувало. Друге значення: вигадати історію чи відмовку, щоб когось обманути.</p>
+        <p class="ex">The first telephone was <span class="hl">invented</span> in the 19th century.</p>
+        <p class="ex">He <span class="hl">invented</span> a story about losing his homework.</p>
+        <p class="forms">Форми: invention (винахід), inventor (винахідник)</p>
+      </div>
+    </div>
+    <div class="row word">
+      <img class="icon" src="data:image/webp;base64,UklGRuwJAABXRUJQVlA4WAoAAAAQAAAAbwAAbwAAQUxQSMADAAAB8Ebbtmnbtq3lUkpdtm3btm3btm3btm3btm3b6rXWkjfGaHPOWuv8uUKIiAnAv6eLhWCqIZiptE+DorMEbZspgDEX3u64i6+/7vzDNltiYgEkSLPUgIl3vv9nOvt0/vnc0XMLxBplglmv/pPOHPvNJP3ZzYeHaoPEMM6FiR6Ts6On6M6Ptwyw5ohhve+YonPAU3I+PRNM2qIY8hzm6By4OfKvLWDSEsVI97OXOfBT4skQaYdi1KfZcw7K3OOlotIKwQhPMXIQe4/nQxshGPJu9jjoIw+AtcFwMnss0DOXgbVAMb9nL4GZ740CaQDwEBPLjDwRVp9hIyYW6vxrBmhtgmHeYC6FkRfCajNsyMRinb9ODq1M8FBJjDwAoS7FnE4vKPMVhVQVcAQjC3ZyVmhVwLPMJTFyO4SaFJP8SS/sUlhNhuWYWXTiM6g6YF/GsjK/GBFSkeH80pz/TAqtSHEfU2mcuSrB8xXMWZNAX2cubq66wpsVzFQTgFfL+2eSqgRPMJWV+fkIkIoUN5WW+BQEFQecyFhW5AWwujZjKm0rhJoUs5JekpMzQWsSDP0ec0mZryqkJhjOZSwp8jAEVLYkc0HOP6eF1iUILzGXk3gNFJUbdmAsxp3z1ycY6QPmUiKvg6J6w5ZMhTh/n7YFgD7MVEbkHjA0MGBO0kuIvA2C+lWA05hZYOQ7Y7VAJeA4ZhaY+M20UFQfsMhb7/XcC4j8fg4YqjfM+C09Owd57vH96WGo3jDVx4yZ/XpMPnA8Zt4zFgzVK8Z6i5H9eyZz9AHLMfO3XVUU1StGeJKR/Tv/2PN+useYvT/PMTrjVZPBFNWL6M2M7N/pG8EWv/F3Oj3FPpPT+eMFM0FMUL0oLmKPHRMfR1Bgwm1u/LjHfvPn128yJqCKBgYcwcgBETEFMPTUy+5w0PEnH7nH6jMND8AMLQzYlcm7eOK6MAAaFJ01CJoYsAGTs6NH7gFF36IW+jQTNDJguZ47O3rkwTC02zD3z8zsGnkSTNplmPZrZnaNvBAqaLZigg+Y2DXyOhNBsxWjv8LIrpF3DwVBsxXDPszIrpHPjARFs0XsJvbYNfLNsaFotijOZ2TXxA8ngaHdimPYY9fEr6aFod2KPRi9S+bPcyGg3Ypp/qKzY/a/l0JAww1rMLKjZ66LgJYrZnPv4JE7IaDtgjsZ+/HIA2BovGLm35n7ijwFhuYbNmZK/xd5MVTaB8PWzhTTP7zFRDA4NCz2Lj3zoeGhGDwahl/59PuOGBGKwaUJAIhg8ClmaoJ/fwdWUDggBgYAAHAcAJ0BKnAAcAA+USSNRSOiIRU7BTQ4BQSzAGrWAyiJo69k/FPMCGD7MZyPiv9IvzAftp6zfoZ/w/qAf07qK/QA8uT2Kf3H/cD4Bf2K/+mQAZ7Nz3rJ5ZTA7gdPC1M059/q/2BP1e61XoRfrGcSer1erVyHLTEXM49uQOvGvonwVtUMdeDe0+Drs9Bdi8XdIGUNesl5O+H968Jkthwkpxp9AVAnsLKqneUWplfVrLmmlljss7UmpaqXBrpQzv+kfR+Y/ZuEuDJRh50C8dlFk0baDDdDkgcwa3mLzJlEoaTDhcM7doQ7Spasp7bAAP7+R4ACK//e7S6jSDR3zl358KABlFYIN0vYYJFzdW3kAbhRt1sEe544zPCs1qPa2WwOLMtrE4jnTi1TEhV4wVF4dFXy9Xap2NS10MGeu5Ta4ZA9ZknKy9yhm39mh1FADHXDe5GP3tlTDVDDAATLUyqtv/Cv/+EUFSAAPfOzR3/6O/95RBXAfrgSGjeHJsvzgv/6+bf/js91rsh9/4GVEc/zTr1JYEbE7LOeHqBEYhnEVrpL6o6apqDgioetiZbJPn1za87kdMKxeFWQyJhjw0pPWlOi/Xzsx1xw/v0HbCqCXzQAwu/CTD6RVQ7sASOeV5AOTJW0f/Hh+DSLfya38TNqJe1pTwSSwFMS6p4vWPeTxgFnftWtPF+e3uch9GRCZph//QC7fGvLbFzmdV4UGvip0tKzMRvCAgwVm7Ide7w3RZHVk5k/6SSktF7qTAi6RXb8S9TYL38oo+EGloLyd1nAfhTjv/GLW5YP3AeLZo8eF06f82IzRU/Nue4hmt0u5d+a+ypRA02zhKd7aZ0Lnk2+PtzXUhjJp5P9cB2zOiZ7ec1V5CTSJfIIqC/su3j5/VpFQX3wnJwwLQpLRpMHnRy+7dPYYeXpzO96nOaziG8HWnqHT72sni/wT0tbs+cQsNfkOPm1L1xfIpfTGxo6W2ZpOSg/KPR1G5BilGPLGhWux7QeOKAcR5uHlXQur16A2Fb4G1FsPd2cQPxcsARlfOcGb7E3LHvnuOV2IFy7qLklHEUJdu4eSJXsjGHbs/uisAOZ2DNtIX02bj5xqAOtNkfNMr/POPgQJf9eOF/SFkyOWvRM6wH2iOyZY7yWZV4PoI1NQ2Q9STq3PlkKRkrhippS3DI5GpkfkG3pyOKgfIAzwKoR6RhNGw2FHDWEDm83ViEce9GIZKgfZcHD7WWz5eje2XXNaBxHrQPghRJeTm0PbzVOSIWt7XJ/Rj5lGlMGmfnloRf+VJ90xapUQOkVl8ooOkwwl7VDyuQs5MEY+kS9m86fklGmhxqIJI8QIyRjdD70cZqzR5323t4NDNu0r6Rg/5PL2pQinUfcno1//hPcP04q9ayAmZXTLhXEkeOdCX3wVUlKRRA3TMryOEaewK7w/ycsL2eeBNnw/4xXP9iQ9B1/13q+gS9U7zzu0uv2/fcf2d3N0gtqUDyJwkQTeOzpX/pPvYWVgRh/ZxuB93//BqzYn2ByLwH2KpRPFBJ3Dv4qW/xHR28VS4QndgwuqzIl4uztjepng8kAdNsCS0CITt+koyX5UgWoKdBVj63mpzN7dVZ60h6FfueyYR3EgtcmrduKh0d1s60gQW6xM5rWHBjXZeSw8kR1sPok/2a1q5iPABT+IYw3PYjYhELVChtBR7wXmlo7xH7JE9v4UNa28Q9qViXjeWePPNsMIVmaPF3nzmndHlGfYtOe3QIrtEfgpXL6Hv0Af5sqcF7UEH1asP+Yc4cB1XMoY6GmV+MoNXB+7JXSDIuA+Yoemm7OF7r56VCZ7dqhXHMRXXMNpKVm7+QVlMPdJRlWYP62QZYGKPzRPglL/gV6HgjSta879akRHVT7/xSgxv5ncWUeXiV+X3zofM/gGl5SiPeDDwJ5/VFcGdVHBKqpEXBQeVAQUsc9+f35xDFYp0EaXILtwfCo+gC10JEjzKsK5FMP7i7+swV6ztJ0tf1LsmUusqe9uF//er5+cNTbAnKy+iQ+obpzUk3mwqZuSXFIf7+m2OmojCJa1oAAAAAAAA==" alt="">
+      <div>
+        <h3>discover</h3>
+        <p class="def">Першим дізнатися, що певне місце чи річ існує. Також: уперше відкрити щось для себе або з’ясувати факт (discover that…).</p>
+        <p class="ex">Astronomers <span class="hl">discover</span> new planets outside our Solar System every year.</p>
+        <p class="ex">I’ve recently <span class="hl">discovered</span> podcasts about science.</p>
+        <p class="forms">Форма: discovery (відкриття)</p>
+      </div>
+    </div>
+    <div class="row word">
+      <img class="icon" src="data:image/webp;base64,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" alt="">
+      <div>
+        <h3>find out</h3>
+        <p class="def">Отримати інформацію: розпитавши, прочитавши тощо. Конструкції: find out about…, find out what / when / who…, find out that…</p>
+        <p class="ex">I need to <span class="hl">find out</span> what time the museum opens.</p>
+        <p class="ex">Did you <span class="hl">find out</span> anything about the new teacher?</p>
+        <p class="forms">Зверніть увагу: з about вживається find out. Discover так не вживається: кажуть discover something або discover that…</p>
+      </div>
+    </div>
+    <div class="row word">
+      <img class="icon" src="data:image/webp;base64,UklGRuwJAABXRUJQVlA4WAoAAAAQAAAAbwAAbwAAQUxQSMADAAAB8Ebbtmnbtq3lUkpdtm3btm3btm3btm3btm3b6rXWkjfGaHPOWuv8uUKIiAnAv6eLhWCqIZiptE+DorMEbZspgDEX3u64i6+/7vzDNltiYgEkSLPUgIl3vv9nOvt0/vnc0XMLxBplglmv/pPOHPvNJP3ZzYeHaoPEMM6FiR6Ts6On6M6Ptwyw5ohhve+YonPAU3I+PRNM2qIY8hzm6By4OfKvLWDSEsVI97OXOfBT4skQaYdi1KfZcw7K3OOlotIKwQhPMXIQe4/nQxshGPJu9jjoIw+AtcFwMnss0DOXgbVAMb9nL4GZ740CaQDwEBPLjDwRVp9hIyYW6vxrBmhtgmHeYC6FkRfCajNsyMRinb9ODq1M8FBJjDwAoS7FnE4vKPMVhVQVcAQjC3ZyVmhVwLPMJTFyO4SaFJP8SS/sUlhNhuWYWXTiM6g6YF/GsjK/GBFSkeH80pz/TAqtSHEfU2mcuSrB8xXMWZNAX2cubq66wpsVzFQTgFfL+2eSqgRPMJWV+fkIkIoUN5WW+BQEFQecyFhW5AWwujZjKm0rhJoUs5JekpMzQWsSDP0ec0mZryqkJhjOZSwp8jAEVLYkc0HOP6eF1iUILzGXk3gNFJUbdmAsxp3z1ycY6QPmUiKvg6J6w5ZMhTh/n7YFgD7MVEbkHjA0MGBO0kuIvA2C+lWA05hZYOQ7Y7VAJeA4ZhaY+M20UFQfsMhb7/XcC4j8fg4YqjfM+C09Owd57vH96WGo3jDVx4yZ/XpMPnA8Zt4zFgzVK8Z6i5H9eyZz9AHLMfO3XVUU1StGeJKR/Tv/2PN+useYvT/PMTrjVZPBFNWL6M2M7N/pG8EWv/F3Oj3FPpPT+eMFM0FMUL0oLmKPHRMfR1Bgwm1u/LjHfvPn128yJqCKBgYcwcgBETEFMPTUy+5w0PEnH7nH6jMND8AMLQzYlcm7eOK6MAAaFJ01CJoYsAGTs6NH7gFF36IW+jQTNDJguZ47O3rkwTC02zD3z8zsGnkSTNplmPZrZnaNvBAqaLZigg+Y2DXyOhNBsxWjv8LIrpF3DwVBsxXDPszIrpHPjARFs0XsJvbYNfLNsaFotijOZ2TXxA8ngaHdimPYY9fEr6aFod2KPRi9S+bPcyGg3Ypp/qKzY/a/l0JAww1rMLKjZ66LgJYrZnPv4JE7IaDtgjsZ+/HIA2BovGLm35n7ijwFhuYbNmZK/xd5MVTaB8PWzhTTP7zFRDA4NCz2Lj3zoeGhGDwahl/59PuOGBGKwaUJAIhg8ClmaoJ/fwdWUDggBgYAAHAcAJ0BKnAAcAA+USSNRSOiIRU7BTQ4BQSzAGrWAyiJo69k/FPMCGD7MZyPiv9IvzAftp6zfoZ/w/qAf07qK/QA8uT2Kf3H/cD4Bf2K/+mQAZ7Nz3rJ5ZTA7gdPC1M059/q/2BP1e61XoRfrGcSer1erVyHLTEXM49uQOvGvonwVtUMdeDe0+Drs9Bdi8XdIGUNesl5O+H968Jkthwkpxp9AVAnsLKqneUWplfVrLmmlljss7UmpaqXBrpQzv+kfR+Y/ZuEuDJRh50C8dlFk0baDDdDkgcwa3mLzJlEoaTDhcM7doQ7Spasp7bAAP7+R4ACK//e7S6jSDR3zl358KABlFYIN0vYYJFzdW3kAbhRt1sEe544zPCs1qPa2WwOLMtrE4jnTi1TEhV4wVF4dFXy9Xap2NS10MGeu5Ta4ZA9ZknKy9yhm39mh1FADHXDe5GP3tlTDVDDAATLUyqtv/Cv/+EUFSAAPfOzR3/6O/95RBXAfrgSGjeHJsvzgv/6+bf/js91rsh9/4GVEc/zTr1JYEbE7LOeHqBEYhnEVrpL6o6apqDgioetiZbJPn1za87kdMKxeFWQyJhjw0pPWlOi/Xzsx1xw/v0HbCqCXzQAwu/CTD6RVQ7sASOeV5AOTJW0f/Hh+DSLfya38TNqJe1pTwSSwFMS6p4vWPeTxgFnftWtPF+e3uch9GRCZph//QC7fGvLbFzmdV4UGvip0tKzMRvCAgwVm7Ide7w3RZHVk5k/6SSktF7qTAi6RXb8S9TYL38oo+EGloLyd1nAfhTjv/GLW5YP3AeLZo8eF06f82IzRU/Nue4hmt0u5d+a+ypRA02zhKd7aZ0Lnk2+PtzXUhjJp5P9cB2zOiZ7ec1V5CTSJfIIqC/su3j5/VpFQX3wnJwwLQpLRpMHnRy+7dPYYeXpzO96nOaziG8HWnqHT72sni/wT0tbs+cQsNfkOPm1L1xfIpfTGxo6W2ZpOSg/KPR1G5BilGPLGhWux7QeOKAcR5uHlXQur16A2Fb4G1FsPd2cQPxcsARlfOcGb7E3LHvnuOV2IFy7qLklHEUJdu4eSJXsjGHbs/uisAOZ2DNtIX02bj5xqAOtNkfNMr/POPgQJf9eOF/SFkyOWvRM6wH2iOyZY7yWZV4PoI1NQ2Q9STq3PlkKRkrhippS3DI5GpkfkG3pyOKgfIAzwKoR6RhNGw2FHDWEDm83ViEce9GIZKgfZcHD7WWz5eje2XXNaBxHrQPghRJeTm0PbzVOSIWt7XJ/Rj5lGlMGmfnloRf+VJ90xapUQOkVl8ooOkwwl7VDyuQs5MEY+kS9m86fklGmhxqIJI8QIyRjdD70cZqzR5323t4NDNu0r6Rg/5PL2pQinUfcno1//hPcP04q9ayAmZXTLhXEkeOdCX3wVUlKRRA3TMryOEaewK7w/ycsL2eeBNnw/4xXP9iQ9B1/13q+gS9U7zzu0uv2/fcf2d3N0gtqUDyJwkQTeOzpX/pPvYWVgRh/ZxuB93//BqzYn2ByLwH2KpRPFBJ3Dv4qW/xHR28VS4QndgwuqzIl4uztjepng8kAdNsCS0CITt+koyX5UgWoKdBVj63mpzN7dVZ60h6FfueyYR3EgtcmrduKh0d1s60gQW6xM5rWHBjXZeSw8kR1sPok/2a1q5iPABT+IYw3PYjYhELVChtBR7wXmlo7xH7JE9v4UNa28Q9qViXjeWePPNsMIVmaPF3nzmndHlGfYtOe3QIrtEfgpXL6Hv0Af5sqcF7UEH1asP+Yc4cB1XMoY6GmV+MoNXB+7JXSDIuA+Yoemm7OF7r56VCZ7dqhXHMRXXMNpKVm7+QVlMPdJRlWYP62QZYGKPzRPglL/gV6HgjSta879akRHVT7/xSgxv5ncWUeXiV+X3zofM/gGl5SiPeDDwJ5/VFcGdVHBKqpEXBQeVAQUsc9+f35xDFYp0EaXILtwfCo+gC10JEjzKsK5FMP7i7+swV6ztJ0tf1LsmUusqe9uF//er5+cNTbAnKy+iQ+obpzUk3mwqZuSXFIf7+m2OmojCJa1oAAAAAAAA==" alt="">
+      <div>
+        <h3>detect</h3>
+        <p class="def">Виявити чи помітити те, що нелегко побачити або почути: за допомогою приладів, аналізів чи уважного слуху.</p>
+        <p class="ex">Doctors can <span class="hl">detect</span> some diseases with a simple blood test.</p>
+        <p class="ex">The camera <span class="hl">detects</span> movement even in the dark.</p>
+        <p class="forms">Форми: detection (виявлення), detector (детектор)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <p class="note">Discover і find out частково збігаються: discover that… і find out that… можуть означати те саме. У тестах вирішують сполучуваність і контекст: з about із цих чотирьох слів поєднується лише find out, а щось нове для науки чи людства — це discover.</p>
+    <p class="note">У деяких підручниках detect перекладають як «відкривати». Щоб не сплутати з discover, запам’ятайте переклад «виявляти, помічати».</p>
+  </div>
+</section>
+
+<section id="tekst">
+  <div class="banner"><h2>Тест у форматі НМТ</h2></div>
+  <p class="sub">Read the text below. Choose the correct answer (A, B, C or D).</p>
+
+  <div class="card passage">
+    <h3>Our Robot</h3>
+    Last year, our robotics club <span class="gap" data-gap="0">(1)</span> a small robot that helps blind people move around the city. Its sensors can <span class="gap" data-gap="1">(2)</span> obstacles up to five metres away. While working on the project, Ivan, our youngest member, <span class="gap" data-gap="2">(3)</span> a real talent for programming. The funny thing is that we only <span class="gap" data-gap="3">(4)</span> about the national competition two days before the deadline, but we still made it!
+  </div>
+
+  <div class="card" id="t1-questions"></div>
+
+  <div class="actions">
+    <button class="btn primary" id="t1-check" type="button" disabled>Перевірити</button>
+    <button class="btn ghost" id="t1-reset" type="button">Почати знову</button>
+    <span class="score" id="t1-score" aria-live="polite"></span>
+  </div>
+</section>
+
+<section id="vikoryna">
+  <div class="banner"><h2>Швидкий тест</h2></div>
+  <p class="sub">Шість речень. Відповідь і пояснення з’являються одразу після вибору.</p>
+  <div id="t2"></div>
+  <div class="actions">
+    <span class="score" id="t2-score" aria-live="polite">0 / 6</span>
+    <button class="btn ghost" id="t2-reset" type="button">Почати знову</button>
+  </div>
+</section>
+
+<footer>Матеріал для підготовки до НМТ з англійської мови, 11 клас.</footer>
+</div>
+
+<script>
+(function(){
+  var L = ["A","B","C","D"];
+  var QICON = "data:image/webp;base64,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";
+
+  function optButton(letter, text){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "opt";
+    var l = document.createElement("span"); l.className = "l"; l.textContent = letter;
+    var t = document.createElement("span"); t.textContent = text;
+    b.appendChild(l); b.appendChild(t);
+    return b;
+  }
+
+  // ---------- Test 1 ----------
+  var t1 = [
+    {opts:["found out","discovered","detected","invented"], a:3,
+     why:"Робота раніше не існувало: його створили вперше. Тому invented."},
+    {opts:["find out","discover","detect","invent"], a:2,
+     why:"Сенсори — це прилади, які помічають перешкоди. Тому detect."},
+    {opts:["found out","discovered","detected","invented"], a:1,
+     why:"Талант уже був, але Іван уперше відкрив його в собі. Так discover уживають, коли людина вперше знаходить для себе щось, що вже існувало."},
+    {opts:["found out","discovered","detected","invented"], a:0,
+     why:"З чотирьох слів лише find out поєднується з about (find out about something). Discover вживають без прийменника: discover something, discover that…"}
+  ];
+  var t1Sel, t1Checked;
+  var t1Box = document.getElementById("t1-questions");
+  var gaps = document.querySelectorAll(".gap");
+  var checkBtn = document.getElementById("t1-check");
+
+  function renderT1(){
+    t1Sel = [null,null,null,null]; t1Checked = false;
+    t1Box.innerHTML = "";
+    t1.forEach(function(q,i){
+      var wrap = document.createElement("div"); wrap.className = "gq";
+      var label = document.createElement("div"); label.className = "gq-label"; label.textContent = "(" + (i+1) + ")";
+      var opts = document.createElement("div"); opts.className = "opts";
+      q.opts.forEach(function(o,j){
+        var b = optButton(L[j], o);
+        b.addEventListener("click", function(){
+          if (t1Checked) return;
+          t1Sel[i] = j;
+          Array.prototype.forEach.call(opts.children, function(c){ c.classList.remove("sel"); });
+          b.classList.add("sel");
+          gaps[i].textContent = o;
+          checkBtn.disabled = t1Sel.indexOf(null) !== -1;
+        });
+        opts.appendChild(b);
+      });
+      var ex = document.createElement("div"); ex.className = "explain";
+      wrap.appendChild(label); wrap.appendChild(opts); wrap.appendChild(ex);
+      t1Box.appendChild(wrap);
+    });
+  }
+
+  checkBtn.addEventListener("click", function(){
+    t1Checked = true;
+    var score = 0;
+    var blocks = t1Box.querySelectorAll(".gq");
+    t1.forEach(function(q,i){
+      var buttons = blocks[i].querySelectorAll(".opt");
+      var ok = t1Sel[i] === q.a;
+      if (ok) score++;
+      Array.prototype.forEach.call(buttons, function(b,j){
+        b.disabled = true; b.classList.remove("sel");
+        if (j === q.a) b.classList.add("ok");
+        else if (j === t1Sel[i]) b.classList.add("bad");
+      });
+      gaps[i].classList.add(ok ? "ok" : "bad");
+      if (!ok) gaps[i].textContent = q.opts[q.a];
+      var ex = blocks[i].querySelector(".explain");
+      ex.textContent = (ok ? "Правильно. " : "Правильна відповідь: " + L[q.a] + " " + q.opts[q.a] + ". ") + q.why;
+      ex.classList.add("show");
+      if (!ok) ex.classList.add("wrong");
+    });
+    document.getElementById("t1-score").textContent = "Результат: " + score + " / 4";
+    checkBtn.disabled = true;
+  });
+
+  document.getElementById("t1-reset").addEventListener("click", function(){
+    checkBtn.disabled = true;
+    document.getElementById("t1-score").textContent = "";
+    Array.prototype.forEach.call(gaps, function(g,i){ g.textContent = "(" + (i+1) + ")"; g.className = "gap"; });
+    renderT1();
+  });
+  renderT1();
+
+  // ---------- Test 2 ----------
+  var t2 = [
+    {pre:"Who ", post:" the first computer mouse?", opts:["found out","discovered","invented","detected"], a:2,
+     why:"Комп’ютерної мишки раніше не існувало: її створили. Тому invented."},
+    {pre:"Scientists have ", post:" a new species of frog in the Amazon.", opts:["found out","discovered","invented","detected"], a:1,
+     why:"Цей вид жаб існував і раніше, але науці не був відомий. Тому discovered."},
+    {pre:"I’ll call the school office to ", post:" about the new timetable.", opts:["find out","discover","invent","detect"], a:0,
+     why:"Треба отримати інформацію, і після пропуску стоїть about. З about із цих слів поєднується лише find out."},
+    {pre:"A smoke alarm can ", post:" smoke long before people notice it.", opts:["find out","discover","invent","detect"], a:3,
+     why:"Сповіщувач — прилад, який виявляє те, чого люди ще не помітили. Тому detect."},
+    {pre:"Tom ", post:" an excuse for missing the lesson.", opts:["found out","discovered","invented","detected"], a:2,
+     why:"Друге значення invent — вигадати. Відмовку Том просто придумав."},
+    {pre:"I could ", post:" a note of sadness in her voice.", opts:["find out","discover","invent","detect"], a:3,
+     why:"Сум у голосі ледь помітний, його треба вловити. Тому detect."}
+  ];
+  var t2Score, t2Done;
+  var t2Box = document.getElementById("t2");
+  var t2ScoreEl = document.getElementById("t2-score");
+
+  function renderT2(){
+    t2Box.innerHTML = "";
+    t2Score = 0; t2Done = 0;
+    t2ScoreEl.textContent = "0 / " + t2.length;
+    t2.forEach(function(q,i){
+      var card = document.createElement("div"); card.className = "card";
+      var head = document.createElement("div"); head.className = "qhead";
+      var img = document.createElement("img"); img.className = "icon"; img.src = QICON; img.alt = "";
+      var text = document.createElement("p"); text.className = "qtext";
+      text.appendChild(document.createTextNode((i+1) + ". " + q.pre));
+      var blank = document.createElement("span"); blank.className = "blank"; blank.innerHTML = "&nbsp;";
+      text.appendChild(blank);
+      text.appendChild(document.createTextNode(q.post));
+      head.appendChild(img); head.appendChild(text);
+      var opts = document.createElement("div"); opts.className = "opts";
+      var ex = document.createElement("div"); ex.className = "explain";
+      q.opts.forEach(function(o,j){
+        var b = optButton(L[j], o);
+        b.addEventListener("click", function(){
+          var ok = j === q.a;
+          Array.prototype.forEach.call(opts.children, function(c,k){
+            c.disabled = true;
+            if (k === q.a) c.classList.add("ok");
+            else if (k === j) c.classList.add("bad");
+          });
+          blank.textContent = q.opts[q.a];
+          blank.style.fontWeight = "600";
+          ex.textContent = (ok ? "Правильно. " : "Правильна відповідь: " + q.opts[q.a] + ". ") + q.why;
+          ex.classList.add("show");
+          if (!ok) ex.classList.add("wrong");
+          if (ok) t2Score++;
+          t2Done++;
+          t2ScoreEl.textContent = t2Score + " / " + t2.length + (t2Done === t2.length ? " — тест завершено" : "");
+        });
+        opts.appendChild(b);
+      });
+      card.appendChild(head); card.appendChild(opts); card.appendChild(ex);
+      t2Box.appendChild(card);
+    });
+  }
+  document.getElementById("t2-reset").addEventListener("click", renderT2);
+  renderT2();
+})();
+</script>
+</body>
+</html>
